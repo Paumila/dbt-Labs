@@ -1,3 +1,5 @@
+{#
+
 {% snapshot snapshot_orders %}
 
 {{
@@ -12,3 +14,5 @@
 select * from {{ source('jaffle_shop', 'orders') }}
 
 {% endsnapshot %}
+
+#}
