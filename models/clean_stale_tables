@@ -1,0 +1,2 @@
+{% set database = target.database %}
+{% set schema = target.schema %}
