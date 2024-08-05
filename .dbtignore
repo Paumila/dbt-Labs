@@ -1,0 +1,55 @@
+# .dbtignore
+
+# ignore general dbt courses examples
+dbt-query
+dbt_project_courses.yml
+
+# ignore macros dbt courses examples
+cents_to_dollars.sql
+clean_stale_models.sql
+grant_select
+limit_data_in_devs.sql
+union_tables_by_prefix.sql
+
+# ignore models dbt courses examples
+all_days.sql
+clean_stale_tables
+schema_examples.yml
+union_tables_by_orders_prefix.sql
+
+# Jinja
+jinja_test
+
+# legacy
+customer_orders.sql
+
+# marts
+fct_customer_orders.sql
+## core
+int_orders__pivoted.sql
+## finance
+fct_orders.sql
+## marketing
+customers_new.sql
+
+# staging
+## jaffle
+_jaffle_shop_docs.md
+_jaffle_shop_sources.yml
+stg_jaffle_customers.sql
+stg_jaffle_orders.sql
+stg_jaffle_shop.yml
+unit_tests.yml
+## stripe
+_stripe_sources.yml
+stg_stripe_payments.sql
+
+# ignore seeds dbt courses examples
+
+# ignore snapshots dbt courses examples
+snapshots_orders
+
+# ignore tests dbt courses examples
+assert_stg_payments_amount_is_positive.sql
+orders_amount_greater_than_five
+
