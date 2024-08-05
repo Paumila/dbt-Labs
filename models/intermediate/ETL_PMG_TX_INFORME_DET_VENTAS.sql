@@ -89,10 +89,21 @@ ON max_anyomes_tienda.PAIS = I.PAIS AND (max_anyomes_tienda.CIUDAD = I.CIUDAD OR
 )
 
 select 
-ventas.*,
-productos.*,
+ventas.PK_ID_VENTA,
+productos.NOMBRE,
 estado.DESCRIPCION,
-tiendas_impuestos.*
+ventas.FECHA,
+tiendas_impuestos.PK_ID_TIENDA,
+tiendas_impuestos.TIPO_TIENDA,
+tiendas_impuestos.IMPUESTO,
+round(productos.PRECIO_UNITARIO,2) as PRECIO_UNITARIO,
+round((productos.PRECIO_UNITARIO*ventas.UNIDADES),2) as PRECIO_TOTAL_BRUTO,
+round(
+-- PRECIO_TOTAL_BRUTO - descuento
+((productos.PRECIO_UNITARIO*ventas.UNIDADES)-(productos.PRECIO_UNITARIO*ventas.UNIDADES*ventas.DESCUENTO))
+-- Aplicado el impuesto
++ (((((productos.PRECIO_UNITARIO*ventas.UNIDADES)-(productos.PRECIO_UNITARIO*ventas.UNIDADES*ventas.DESCUENTO))))*(tiendas_impuestos.IMPUESTO/100))
+,2) as PRECIO_TOTAL_NETO
 from ventas
 
 inner join productos
