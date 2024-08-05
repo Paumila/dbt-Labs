@@ -42,8 +42,8 @@ impuestos as (
 max_anyomes_tienda as (
 
     select 
-    PK_ANYOMES, 
-    PK_ID_TIENDA, 
+    tiendas.PK_ANYOMES, 
+    tiendas.PK_ID_TIENDA, 
     PAIS, 
     CIUDAD, 
     ID_GERENTE, 
@@ -55,8 +55,8 @@ max_anyomes_tienda as (
     inner join (
         select 
         PK_ID_TIENDA, MAX(PK_ANYOMES) as PK_ANYOMES
-        group by PK_ID_TIENDA
         from {{ ref('ETL_PMG_TM_TIENDA') }}
+        group by PK_ID_TIENDA
         ) max_tienda
     on tiendas.PK_ANYOMES = max_tienda.PK_ANYOMES and tiendas.PK_ID_TIENDA = max_tienda.PK_ID_TIENDA
 
@@ -65,16 +65,16 @@ max_anyomes_tienda as (
 tiendas_impuestos as (
 
     select 
-    T.PK_ANYOMES, 
-    T.PK_ID_TIENDA,
-    T.PAIS,
-    T.CIUDAD,
-    T.ID_GERENTE,
-    T.ID_JEFE_ZONA,
-    T.N_EMPLEADOS,
-    T.TIPO_TIENDA,
+    max_anyomes_tienda.PK_ANYOMES, 
+    max_anyomes_tienda.PK_ID_TIENDA,
+    max_anyomes_tienda.PAIS,
+    max_anyomes_tienda.CIUDAD,
+    max_anyomes_tienda.ID_GERENTE,
+    max_anyomes_tienda.ID_JEFE_ZONA,
+    max_anyomes_tienda.N_EMPLEADOS,
+    max_anyomes_tienda.TIPO_TIENDA,
     I.IMPUESTO
-    from max_anyomes_tienda as T
+    from max_anyomes_tienda
     left join (
         select 
         case
@@ -84,14 +84,14 @@ tiendas_impuestos as (
         ESTADO, 
         CIUDAD, 
         IMPUESTO from {{ ref('ETL_PMG_TM_IMPUESTOS') }}) as I
-ON T.PAIS = I.PAIS AND (T.CIUDAD = I.CIUDAD OR (I.CIUDAD IS NULL AND T.PAIS <> "EEUU"))
+ON max_anyomes_tienda.PAIS = I.PAIS AND (max_anyomes_tienda.CIUDAD = I.CIUDAD OR (I.CIUDAD IS NULL AND max_anyomes_tienda.PAIS <> "EEUU"))
 
 )
 
 select 
 ventas.*,
 productos.*,
-estado.*,
+estado.DESCRIPCION,
 tiendas_impuestos.*
 from ventas
 

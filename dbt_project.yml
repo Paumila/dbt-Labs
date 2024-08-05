@@ -40,6 +40,8 @@ models:
     # Applies to all files under models
     input:
       materialized: table
+    intermediate:
+      materialized: table
 
 seeds:
   exercise_dbt_sdg:
