@@ -1,0 +1,1 @@
+select * from {{ source('dbt_pmilaguasch', 'ETL_XXX_TM_PRODUCTO') }}

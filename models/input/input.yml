@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: ETL_PMG_DE_ESTADO
+    description: Estado de los productos
+    columns:
+      - name: COD_ESTADO
+        description: PK de la tabla de Estado
+        tests:
+          - unique
+          - not_null   
+
+  - name: ETL_PMG_TX_VENTAS
+    description: Tabla de las ventas
+    columns:
+      - name: PK_ID_VENTA
+        description: PK de las ventas
+        tests:
+          - unique
+          - not_null
+
+  - name: ETL_PMG_TM_TIENDA
+    description: Tabla de las ventas
+    columns:
+      - name: PK_ID_TIENDA_AND_ANYOMES
+        description: Conjunto de la PK de las tiendas
+        tests:
+          - unique
+          - not_null
+
+  - name: ETL_PMG_TM_PRODUCTO
+    description: Tabla maestra de los productos
+    columns:
+      - name: PK_ID_PRODUCTO
+        description: PK del producto
+        tests:
+          - unique
+          - not_null 

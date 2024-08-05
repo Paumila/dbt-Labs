@@ -1,0 +1,34 @@
+version: 2
+
+sources:
+  - name: dbt_pmilaguasch
+    description: a clone of a Postgres application database
+    database: dbtpill 
+    schema: dbt_pmilaguasch  
+    tables:
+      - name: ETL_XXX_DE_ESTADO
+        description: Estado del producto
+        columns:
+          - name: COD_ESTADO
+            description: PK de la tabla de Estado
+            tests:
+              - unique
+              - not_null        
+      - name: ETL_XXX_TX_VENTAS
+        description: Tabla de las ventas
+        columns:
+          - name: PK_ID_VENTA
+            description: PK de las ventas
+            tests:
+              - unique
+              - not_null
+      - name: ETL_XXX_TM_TIENDA
+        description: Tabla maestra de las tiendas
+      - name: ETL_XXX_TM_PRODUCTO
+        description: Tabla maestra de los productos
+        columns:
+          - name: PK_ID_PRODUCTO
+            description: PK del producto
+            tests:
+              - unique
+              - not_null  
