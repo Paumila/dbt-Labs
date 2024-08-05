@@ -1,1 +1,10 @@
-select * from {{ source('dbt_pmilaguasch', 'ETL_XXX_TX_VENTAS') }}
+SELECT 
+    ANYOMES, 
+    PK_ID_VENTA,
+    CAST(CONCAT(SUBSTR(CAST(ANYOMES AS STRING), 1, 4), '-', SUBSTR(CAST(ANYOMES AS STRING), 5, 2), '-', SUBSTR(FECHA, 9, 2)) AS DATE) AS FECHA, 
+    ID_PRODUCTO, 
+    ID_TIENDA, 
+    UNIDADES, 
+    DESCUENTO, 
+    INCIDENCIAS
+FROM {{ source('dbt_pmilaguasch', 'ETL_XXX_TX_VENTAS') }}

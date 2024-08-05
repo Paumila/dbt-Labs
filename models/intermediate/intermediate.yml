@@ -2,4 +2,4 @@ version: 2
 
 models:
   - name: ETL_PMG_TX_INFORME_DET_VENTAS
-    description: Tabla detalle de las ventas  
+    description: Tabla detalle de las ventas
