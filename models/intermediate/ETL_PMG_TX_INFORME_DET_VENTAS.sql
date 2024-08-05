@@ -28,14 +28,14 @@ tiendas as (
     ID_GERENTE, 
     ID_JEFE_ZONA, 
     N_EMPLEADOS,
-    {{ tipo_tienda(N_EMPLEADOS) }} as TIPO_TIENDA    
+    {{ tipo_tienda('N_EMPLEADOS') }} as TIPO_TIENDA    
     from {{ ref('ETL_PMG_TM_TIENDA') }}
 
 ),
 
 impuestos as (
 
-    select * from {{ ref(' ETL_PMG_TM_IMPUESTOS') }}
+    select * from {{ ref('ETL_PMG_TM_IMPUESTOS') }}
 
 ),
 
@@ -83,7 +83,7 @@ tiendas_impuestos as (
         else PAIS end as PAIS,
         ESTADO, 
         CIUDAD, 
-        IMPUESTO FROM {{ ref('ETL_PMG_TM_IMPUESTOS') }}) as I
+        IMPUESTO from {{ ref('ETL_PMG_TM_IMPUESTOS') }}) as I
 ON T.PAIS = I.PAIS AND (T.CIUDAD = I.CIUDAD OR (I.CIUDAD IS NULL AND T.PAIS <> "EEUU"))
 
 )
