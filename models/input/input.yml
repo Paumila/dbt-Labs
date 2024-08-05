@@ -35,4 +35,13 @@ models:
         description: PK del producto
         tests:
           - unique
-          - not_null 
+          - not_null
+
+  - name: ETL_PMG_TM_IMPUESTOS
+    description: Tabla de los impuestos
+    columns:
+      - name: PK_ID_PAIS_ESTADO_CIUDAD
+        description: Conjunto de la PK de la tabla de impuestos
+        tests:
+          - unique
+          - not_null

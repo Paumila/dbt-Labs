@@ -43,5 +43,3 @@ models:
 
 seeds:
   exercise_dbt_sdg:
-    input:
-      materialized: view
