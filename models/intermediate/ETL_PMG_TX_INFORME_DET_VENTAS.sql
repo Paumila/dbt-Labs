@@ -106,12 +106,12 @@ round(
 ,2) as PRECIO_TOTAL_NETO
 from ventas
 
-inner join productos
+left join productos
 on ventas.ID_PRODUCTO = productos.PK_ID_PRODUCTO
 
-inner join estado
+left join estado
 on productos.COD_ESTADO = estado.COD_ESTADO
 
-inner join tiendas_impuestos
+left join tiendas_impuestos
 on ventas.ID_TIENDA = tiendas_impuestos.PK_ID_TIENDA
 

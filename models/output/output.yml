@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: ETL_PMG_TAGG_VENTAS_TIENDA
+    description: Totales de las ventas Bruto/Neto según el tipo de tienda (Pequeña, Mediana y Grande)
+
