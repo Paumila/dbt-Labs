@@ -42,6 +42,8 @@ models:
       materialized: table
     intermediate:
       materialized: table
+    output:
+      materialized: table
 
 seeds:
   exercise_dbt_sdg:
